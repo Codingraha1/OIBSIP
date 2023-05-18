@@ -1,0 +1,63 @@
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+	
+	
+	System.out.println("Welcome to number guessing  game");
+
+	int count=0;
+	
+	Scanner sc=new Scanner(System.in);
+	
+	System.out.println("enter the maximum limit");
+	int max=sc.nextInt();
+	
+	System.out.println("enter the lower limit");
+	int min=sc.nextInt();
+	
+	
+		
+	Random rand=new Random();
+	int guess=rand.nextInt(max-min)+min;
+	
+	
+//	int no_of_chances=7;
+	
+	System.out.println("enter your guess");
+	int i;
+	for(i=0;i<7;i++){
+	    
+	    int  value=sc.nextInt();
+	    
+	    
+	    if(value==guess){
+	        
+	        System.out.println("Congratulation ,you win");
+	        System.out.println("you win in "+(i+1)+" attempt");
+	        break;
+	    }
+	    
+	    else if(guess>value && i<6){
+	        System.out.println("enter greater number");
+	        
+	    }
+	    
+	    else {
+	        if(i<6){System.out.println("enter smaller number");}
+	    }
+	    
+	
+	    
+	    
+	}
+	
+	
+	if(i==7){
+	    
+	    
+	    System.out.println("sorry your chances are over ");
+	    System.out.println("better luck next time");
+}
+	}
+}
