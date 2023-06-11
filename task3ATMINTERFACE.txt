@@ -1,0 +1,204 @@
+/******************************************************************************
+
+ TASK 3: ATM Inteface 
+
+ *******************************************************************************/
+import java.util.*;
+
+class accountinfo{
+
+    String userid="8FR089";
+    String pin="89123";
+
+    double cash=6700;
+
+
+    public boolean check(String  user,String pinno){
+
+        String use=userid;
+        String pi=pin;
+
+
+
+        if(user.equals(use) && pinno.equals(pin)){
+
+
+            return true;
+        }
+        else{
+            System.out.println("your credentials didn't match");
+            return false;
+        }
+
+    }
+
+
+
+
+}
+
+
+class tran_history extends accountinfo{
+
+    // double remain=5600;
+
+    void rem(){
+        double remain=cash;
+
+        System.out.println(remain);
+    }
+
+
+}
+
+class withdraw extends tran_history{
+
+    double low=2000;
+
+    void remove(double with){
+
+        if((cash-with)>low){
+
+            cash=cash-with;
+            System.out.println("your remaining balance is"+cash);
+        }
+
+
+
+    }
+
+
+
+}
+
+class deposit extends withdraw{
+
+    void add(double amount){
+
+        cash=amount+cash;
+        System.out.println("you added "+amount+"now your account balance is"+cash);
+    }
+
+}
+
+class Transfer extends deposit{
+
+    void trans(String sec_id, double donate){
+  if(cash>donate){
+        cash=cash-donate;
+        System.out.println("Receiver USERID:"+sec_id);
+
+        System.out.println("you transfer the amount "+donate+"now your current balance is "+cash);
+}
+   else{
+       System.out.println("you don't have enough cash");
+   }
+
+    }
+
+
+}
+
+
+
+public class rohan
+{
+    public static void main(String[] args) {
+
+
+        System.out.println("Welcome yours on ATM SERVICES");
+
+        Scanner sc=new Scanner(System.in);
+        Scanner tn=new Scanner(System.in);
+
+        System.out.println("enter your USER ID");
+        String user=sc.nextLine();
+
+        System.out.println("enter your PIN NO.");
+        String pin=sc.nextLine();
+
+        accountinfo ram=new accountinfo();
+        if(ram.check(user,pin)==true){
+
+
+
+
+
+            System.out.println("Enter corresponding keyword for the functionality you want to acess");
+
+
+            System.out.println("2 :-> Transaction History");
+            System.out.println("3 :->Withdraw money");
+            System.out.println("4 :->Deposit money");
+            System.out.println("5 :->Transfer money");
+            System.out.println("6 :->Quit");
+      int i;
+            for(int j=0;j<5;j++){
+
+            i=sc.nextInt();
+              
+                switch(i){
+                
+                   
+                    case 2:
+                    System.out.println("Last transaction  history");
+                        tran_history a=new tran_history();
+                        a.rem();
+                        break;
+
+
+                    case 3:
+                        withdraw am=new withdraw();
+                        System.out.println("enter the amount  you want to withdraw");
+                        double with=sc.nextDouble();
+                        am.remove(with);
+                        break;
+
+                    case 4:
+                    System.out.println("enter the  amount you want to deposit");
+                        double men=sc.nextDouble();
+                        deposit m=new deposit();
+                        m.add(men);
+                        break;
+
+                    case 5:
+                       Transfer k= new Transfer();
+                    System.out.println("enter the user id of money receiver");
+                    String  sec_id=tn.nextLine();
+                     System.out.println("entered user id is"+sec_id);
+                   // System.out.println("Now,enter the  pin of a money receiver"); 
+                    //System.out.println("");
+                    //String sec_pin=sc.nextLine();
+                        //.out.println("entered pin no.is"+sec_pin);
+                        //String sec_pin=sc.nextLine();
+                    System.out.println("enter the amount you want to tranfer");
+                    double money=tn.nextDouble();
+                       
+                        k.trans(sec_id,money);
+                        break;
+                    case 6:
+                        System.out.println("you have successsfully exited");
+                        j=5;
+                        break;
+
+
+
+
+
+                }
+
+
+            }
+
+
+
+
+
+        }
+
+
+
+
+
+    }
+}
